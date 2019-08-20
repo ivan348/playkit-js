@@ -92,6 +92,7 @@ class FullscreenController {
       } else {
         this._requestFullscreen(fullScreenElement);
       }
+      fullScreenElement.focus();
     }
   }
 
