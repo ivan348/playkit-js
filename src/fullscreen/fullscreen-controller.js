@@ -82,7 +82,6 @@ class FullscreenController {
         if (playbackConfig.inBrowserFullscreen && playbackConfig.playsinline) {
           this._requestFullscreen(fullScreenElement);
           this._enterInBrowserFullscreen(fullScreenElement);
-          console.log('enter')
         } else {
           const videoElement: ?HTMLVideoElement = this._player.getVideoElement();
           if (videoElement && typeof videoElement.webkitEnterFullScreen === 'function') {
