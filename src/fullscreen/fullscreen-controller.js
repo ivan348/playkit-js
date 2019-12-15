@@ -80,6 +80,7 @@ class FullscreenController {
       }
       if (this._player.env.os.name === 'iOS') {
         if (playbackConfig.inBrowserFullscreen && playbackConfig.playsinline) {
+          this._requestFullscreen(fullScreenElement);
           this._enterInBrowserFullscreen(fullScreenElement);
         } else {
           const videoElement: ?HTMLVideoElement = this._player.getVideoElement();
@@ -104,6 +105,7 @@ class FullscreenController {
       if (this._player.env.os.name === 'iOS') {
         // player will be in full screen with this flag or otherwise will be natively full screen
         if (this._isInBrowserFullscreen) {
+          this._requestExitFullscreen();
           this._exitInBrowserFullscreen();
         } else {
           const videoElement: ?HTMLVideoElement = this._player.getVideoElement();
@@ -232,6 +234,16 @@ class FullscreenController {
   _fullscreenChangeHandler(): void {
     //fire player event for current state, if player is in fullscreen fire player fullscreen event otherwise exit
     this.isFullscreen() ? this._fullscreenEnterHandler() : this._fullscreenExitHandler();
+
+    if (this._player.env.os.name === 'iOS') {
+      const playbackConfig = this._player.config.playback;
+
+      if (playbackConfig.inBrowserFullscreen && playbackConfig.playsinline) {
+        if (this._isInBrowserFullscreen && !this._isNativeFullscreen()) {
+          this._exitInBrowserFullscreen();
+        }
+      }
+    }
   }
 
   /**
