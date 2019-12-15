@@ -199,7 +199,7 @@ class FullscreenController {
     eventManager.listen(document, 'mozfullscreenchange', () => this._fullscreenChangeHandler());
     eventManager.listen(document, 'fullscreenchange', () => this._fullscreenChangeHandler());
     eventManager.listen(document, 'MSFullscreenChange', () => this._fullscreenChangeHandler());
-    this._handleIosFullscreen(eventManager);
+    // this._handleIosFullscreen(eventManager);
   }
 
   /**
