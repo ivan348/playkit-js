@@ -254,6 +254,7 @@ class FullscreenController {
    */
   _fullscreenExitHandler(): void {
     if (!this.isFullscreen()) {
+      this._exitInBrowserFullscreen();
       this._player.dispatchEvent(new FakeEvent(this._player.Event.EXIT_FULLSCREEN));
     }
   }
