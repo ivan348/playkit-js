@@ -80,6 +80,7 @@ class FullscreenController {
       }
       if (this._player.env.os.name === 'iOS') {
         if (playbackConfig.inBrowserFullscreen && playbackConfig.playsinline) {
+          this._requestFullscreen(fullScreenElement);
           this._enterInBrowserFullscreen(fullScreenElement);
         } else {
           const videoElement: ?HTMLVideoElement = this._player.getVideoElement();
@@ -104,6 +105,8 @@ class FullscreenController {
       if (this._player.env.os.name === 'iOS') {
         // player will be in full screen with this flag or otherwise will be natively full screen
         if (this._isInBrowserFullscreen) {
+
+          this._requestExitFullscreen();
           this._exitInBrowserFullscreen();
         } else {
           const videoElement: ?HTMLVideoElement = this._player.getVideoElement();
